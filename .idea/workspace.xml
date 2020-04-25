@@ -6,7 +6,6 @@
       <change afterPath="$PROJECT_DIR$/src/PictureButton.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/SafeGUI.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -86,18 +85,34 @@
       <workItem from="1587754800797" duration="2783000" />
       <workItem from="1587773462790" duration="674000" />
       <workItem from="1587775814906" duration="308000" />
-      <workItem from="1587828249755" duration="3031000" />
+      <workItem from="1587828249755" duration="3357000" />
     </task>
+    <task id="LOCAL-00001" summary="GUI working well, need solve">
+      <created>1587831606920</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587831606920</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="GUI working well, need solve" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI working well, need solve" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1088" y="412" width="374" height="575" key="#com.intellij.ide.util.MemberChooser" timestamp="1587265445125">
       <screen x="0" y="27" width="2560" height="1348" />
     </state>
     <state x="1088" y="412" width="374" height="575" key="#com.intellij.ide.util.MemberChooser/0.27.2560.1348@0.27.2560.1348" timestamp="1587265445125" />
+    <state x="842" y="244" width="865" height="912" key="CommitChangelistDialog2" timestamp="1587831606851">
+      <screen x="0" y="27" width="2560" height="1348" />
+    </state>
+    <state x="842" y="244" width="865" height="912" key="CommitChangelistDialog2/0.27.2560.1348@0.27.2560.1348" timestamp="1587831606851" />
     <state x="1063" y="458" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587757686194">
       <screen x="0" y="27" width="2560" height="1348" />
     </state>
