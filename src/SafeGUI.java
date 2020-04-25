@@ -49,7 +49,7 @@ public class SafeGUI extends Application {
                 safe = main.createSafe(filename);
                 updateStage(visualSafe,safe);
             });
-        File f = new File("/home/aaron/IdeaProjects/Project2/src");
+        File f = new File("/home/aaron/IdeaProjects/Project2/src"); //CHANGE THIS LINE TO RUN ON OTHER MACHINES, SORRY
         String[] fileNamesRaw = f.list();
         ArrayList<String> filenames = new ArrayList<>();
         for (String file:fileNamesRaw){
@@ -65,11 +65,15 @@ public class SafeGUI extends Application {
         comboBox.setOnAction(e->{
             filename = "src/"+comboBox.getValue();
             safe = main.createSafe(filename);
+            stage.setTitle(filename);
             updateStage(visualSafe,safe);
         });
-            actionButtons.getChildren().addAll(check,restart,comboBox);
+        Button quit = new Button("Quit");
+        quit.setOnAction(e->System.exit(0));
+            actionButtons.getChildren().addAll(check,restart,comboBox,quit);
             vBox.getChildren().addAll(actionButtons,status);
             Scene scene = new Scene(vBox);
+            stage.setTitle(filename);
             stage.setScene(scene);
             stage.show();
     }

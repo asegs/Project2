@@ -25,16 +25,15 @@ public class PictureButton {
         return this.button;
     }
     public String[][] changeAtPoint(String[][] safe){
-//        for (int i = 0;i<safe.length;i++){
-//            for (int b = 0;b<safe[0].length;b++){
-//                System.out.print(safe[i][b]);
-//            }
-//            System.out.println("");
-//        }
+        for (int i = 0;i<safe.length;i++){
+            for (int b = 0;b<safe[0].length;b++){
+                System.out.print(safe[i][b]);
+            }
+            System.out.println("");
+        }
         Main main = new Main();
         if (safe[row][col].equals(".")){
             boolean place = main.canPlace(safe,row,col);
-            System.out.println(place);
             if (place) {
                 ArrayList<String> toReplace = new ArrayList<>();
                 toReplace.add(".");
