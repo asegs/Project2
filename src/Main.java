@@ -234,13 +234,19 @@ public class Main {
                     goodToPlace = placeChecker(safe,x-1,y);
                 }
                 if (x<safe.length-1){
-                    goodToPlace = placeChecker(safe,x+1,y);
+                    if (goodToPlace) {
+                        goodToPlace = placeChecker(safe, x + 1, y);
+                    }
                 }
                 if (y>0){
-                    goodToPlace = placeChecker(safe,x,y-1);
+                    if (goodToPlace) {
+                        goodToPlace = placeChecker(safe, x, y - 1);
+                    }
                 }
                 if (y<safe[0].length-1){
-                    goodToPlace = placeChecker(safe,x,y+1);
+                    if (goodToPlace) {
+                        goodToPlace = placeChecker(safe, x, y + 1);
+                    }
                 }
                 return goodToPlace;
             }
@@ -277,9 +283,24 @@ public class Main {
     switch did something, tries to tell user if they have syntax wrong.
     Refreshes grid when it is changed.
      */
-    public void actions(String[][] safe,String filename) {
+
+    public String[][] addLaserAtPoint(String[][] safe,int x,int y){
+        boolean place = canPlace(safe,x, y);
+        if (place) {
+            ArrayList<String> toReplace = new ArrayList<>();
+            toReplace.add(".");
+            toReplace.add("L");
+            toReplace.add("*");
+            safe[x][y] = "L";
+            safe = replaceFromPoint(safe,x,y,toReplace,"*");
+            drawSafe(safe);
+        }
+        return safe;
+    }
+
+    public String[][] actions(String[][] safe,String filename) {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        //while (true) {
             System.out.println("Enter your command or type 'help':");
             String choice = scanner.nextLine();
             String[] terms = choice.split(" ", 0);
@@ -353,7 +374,8 @@ public class Main {
                 System.out.println("Invalid command.");
             }
 
-        }
+        //}
+        return safe;
     }
 
     public static void main(String[] args) {
