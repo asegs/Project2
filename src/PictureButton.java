@@ -24,14 +24,12 @@ public class PictureButton {
     public Button getButton(){
         return this.button;
     }
+    /*
+    If not in editing mode, adds a laser if possible at a place.  If not
+    possible, does nothing.  If in editing mode, cycles the current tile through all options.
+     */
     public String[][] changeAtPoint(String[][] safe){
         String options = "01234XL.";
-//        for (int i = 0; i < safe.length; i++) {
-//            for (int b = 0; b < safe[0].length; b++) {
-//                System.out.print(safe[i][b]);
-//            }
-//            System.out.println("");
-//        }
         if (!SafeGUI.editing) {
             Main main = new Main();
             if (safe[row][col].equals(".")) {
