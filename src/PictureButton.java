@@ -25,27 +25,37 @@ public class PictureButton {
         return this.button;
     }
     public String[][] changeAtPoint(String[][] safe){
-        for (int i = 0;i<safe.length;i++){
-            for (int b = 0;b<safe[0].length;b++){
-                System.out.print(safe[i][b]);
+        String options = "01234XL.";
+//        for (int i = 0; i < safe.length; i++) {
+//            for (int b = 0; b < safe[0].length; b++) {
+//                System.out.print(safe[i][b]);
+//            }
+//            System.out.println("");
+//        }
+        if (!SafeGUI.editing) {
+            Main main = new Main();
+            if (safe[row][col].equals(".")) {
+                boolean place = main.canPlace(safe, row, col);
+                if (place) {
+                    ArrayList<String> toReplace = new ArrayList<>();
+                    toReplace.add(".");
+                    toReplace.add("L");
+                    toReplace.add("*");
+                    safe[row][col] = "L";
+                    safe = main.replaceFromPoint(safe, row, col, toReplace, "*");
+                }
+            } else if (safe[row][col].equals("L")) {
+                safe = main.removeLaser(safe, row, col);
+                safe = main.addBeams(safe);
             }
-            System.out.println("");
         }
-        Main main = new Main();
-        if (safe[row][col].equals(".")){
-            boolean place = main.canPlace(safe,row,col);
-            if (place) {
-                ArrayList<String> toReplace = new ArrayList<>();
-                toReplace.add(".");
-                toReplace.add("L");
-                toReplace.add("*");
-                safe[row][col] = "L";
-                safe = main.replaceFromPoint(safe,row,col,toReplace,"*");
+        else {
+            int currentIdx = options.indexOf(safe[row][col]);
+            if (currentIdx==options.length()-1){
+                currentIdx = -1;
             }
-        }
-         else if (safe[row][col].equals("L")){
-            safe = main.removeLaser(safe, row, col);
-            safe = main.addBeams(safe);
+            currentIdx++;
+            safe[row][col] = options.substring(currentIdx,currentIdx+1);
         }
 
         return safe;

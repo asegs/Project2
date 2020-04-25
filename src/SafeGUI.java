@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -18,6 +19,7 @@ public class SafeGUI extends Application {
     Main main = new Main();
     String filename = "src/test1.txt";
     String[][] safe = main.createSafe(filename);
+    public static boolean editing = false;
     @Override
     public void start(Stage stage) throws Exception {
             VBox vBox = new VBox();
@@ -68,9 +70,38 @@ public class SafeGUI extends Application {
             stage.setTitle(filename);
             updateStage(visualSafe,safe);
         });
+        Button edit = new Button("Editor");
+        TextField newName = new TextField();
+        Button create = new Button("Create");
+        create.setOnAction(e->{
+            System.out.println(safe[0][0]);
+            fileGenerator.createFile("src/"+newName.getText()+".txt");
+            String formattedSafe = safe.length +" "+ safe[0].length+"\n";
+            for (int i = 0;i<safe.length;i++){
+                for (int b = 0;b<safe[0].length;b++){
+                    formattedSafe+=visualSafe[i][b].getText()+" ";
+                }
+                formattedSafe+="\n";
+            }
+            System.out.println(formattedSafe);
+            fileEditor.replaceFile("src/"+newName.getText()+".txt",formattedSafe,false);
+        });
+        edit.setOnAction(e->{
+            if (actionButtons.getChildren().contains(newName)){
+                actionButtons.getChildren().removeAll(newName,create);
+            }
+            else {
+                safe = main.createSafe(filename);
+                updateStage(visualSafe,safe);
+                actionButtons.getChildren().addAll(newName,create);
+                editing = true;
+
+            }
+        });
+
         Button quit = new Button("Quit");
         quit.setOnAction(e->System.exit(0));
-            actionButtons.getChildren().addAll(check,restart,comboBox,quit);
+            actionButtons.getChildren().addAll(check,restart,comboBox,edit,quit);
             vBox.getChildren().addAll(actionButtons,status);
             Scene scene = new Scene(vBox);
             stage.setTitle(filename);
