@@ -107,7 +107,7 @@ public class Main {
             return 2;
         }
         if (required < 0){
-            System.out.println("The pillar at "+x+","+y+" is overloaded!");
+            SafeGUI.status.setText("The pillar at "+x+","+y+" is overloaded!");
             return 3;
         }
         return 3;
@@ -210,7 +210,7 @@ public class Main {
         if (!(safe[x][y].equals(".") || safe[x][y].equals("*"))) {
             tempPlace = (pillarSatisfied(safe, x, y));
             if (tempPlace == 2 || tempPlace == 3) {
-                System.out.println("Pillar at " + x + "," + y + " is full!");
+                SafeGUI.status.setText("Pillar at " + x + "," + y + " is full!");
                 return false;
             }
 

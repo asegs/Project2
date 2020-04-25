@@ -16,10 +16,11 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class SafeGUI extends Application {
-    Main main = new Main();
-    String filename = "src/test1.txt";
-    String[][] safe = main.createSafe(filename);
+    public static Main main = new Main();
+    public static String filename = "src/test1.txt";
+    public static String[][] safe = main.createSafe(filename);
     public static boolean editing = false;
+    public static Label status = new Label("Ready!");
     @Override
 
     /*
@@ -33,7 +34,7 @@ public class SafeGUI extends Application {
             for (int i = 0; i < safe.length; i++) {
                 HBox hBox = new HBox();
                 for (int b = 0; b < safe[0].length; b++) {
-                    PictureButton pb = new PictureButton("",i,b,safe,visualSafe);
+                    PictureButton pb = new PictureButton("",i,b,visualSafe);
                     pb.getButton().setText(safe[i][b]);
                     visualSafe[i][b] = pb.getButton();
                     hBox.getChildren().add(pb.getButton());
@@ -41,7 +42,7 @@ public class SafeGUI extends Application {
                 vBox.getChildren().add(hBox);
             }
             //Shows if the safe is solved
-            Label status = new Label("Ready!");
+
             HBox actionButtons = new HBox();
             //Runs script to see if safe is solved, updates status label
             Button check = new Button("Check");

@@ -8,7 +8,7 @@ public class PictureButton {
     private int row;
     private int col;
 
-    public PictureButton(String name,int row,int col,String[][] safe,Button[][] visualSafe){
+    public PictureButton(String name,int row,int col,Button[][] visualSafe){
         this.row = row;
         this.col = col;
         this.button = new Button(name);
@@ -16,8 +16,8 @@ public class PictureButton {
         this.button.setMaxSize(80,80);
         this.button.setStyle("-fx-font-size: 36; ");
         this.button.setOnAction(e->{
-            changeAtPoint(safe);
-            SafeGUI.updateStage(visualSafe,safe);
+            changeAtPoint();
+            SafeGUI.updateStage(visualSafe, SafeGUI.safe);
         });
     }
 
@@ -28,34 +28,37 @@ public class PictureButton {
     If not in editing mode, adds a laser if possible at a place.  If not
     possible, does nothing.  If in editing mode, cycles the current tile through all options.
      */
-    public String[][] changeAtPoint(String[][] safe){
+    public String[][] changeAtPoint(){
         String options = "01234XL.";
         if (!SafeGUI.editing) {
+            if (SafeGUI.safe[row][col].equals("*")){
+                SafeGUI.status.setText("This would be hit by a laser!");
+            }
             Main main = new Main();
-            if (safe[row][col].equals(".")) {
-                boolean place = main.canPlace(safe, row, col);
+            if (SafeGUI.safe[row][col].equals(".")) {
+                boolean place = main.canPlace(SafeGUI.safe, row, col);
                 if (place) {
                     ArrayList<String> toReplace = new ArrayList<>();
                     toReplace.add(".");
                     toReplace.add("L");
                     toReplace.add("*");
-                    safe[row][col] = "L";
-                    safe = main.replaceFromPoint(safe, row, col, toReplace, "*");
+                    SafeGUI.safe[row][col] = "L";
+                    SafeGUI.safe = main.replaceFromPoint(SafeGUI.safe, row, col, toReplace, "*");
                 }
-            } else if (safe[row][col].equals("L")) {
-                safe = main.removeLaser(safe, row, col);
-                safe = main.addBeams(safe);
+            } else if (SafeGUI.safe[row][col].equals("L")) {
+                SafeGUI.safe = main.removeLaser(SafeGUI.safe, row, col);
+                SafeGUI.safe = main.addBeams(SafeGUI.safe);
             }
         }
         else {
-            int currentIdx = options.indexOf(safe[row][col]);
+            int currentIdx = options.indexOf(SafeGUI.safe[row][col]);
             if (currentIdx==options.length()-1){
                 currentIdx = -1;
             }
             currentIdx++;
-            safe[row][col] = options.substring(currentIdx,currentIdx+1);
+            SafeGUI.safe[row][col] = options.substring(currentIdx,currentIdx+1);
         }
 
-        return safe;
+        return SafeGUI.safe;
     }
 }
